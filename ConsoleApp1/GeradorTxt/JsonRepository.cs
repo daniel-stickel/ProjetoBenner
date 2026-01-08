@@ -1,7 +1,9 @@
+using AvaliacaoDotnet.Entidades;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using AvaliacaoDotnet.Entidades;
 
 namespace GeradorTxt
 {
