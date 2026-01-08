@@ -1,3 +1,4 @@
+using AvaliacaoDotnet;
 using System;
 using System.IO;
 
@@ -70,7 +71,7 @@ namespace GeradorTxt
 
                             var fullPath = Path.Combine(_outputDir, fileName);
 
-                            gerador.Gerar(dados, fullPath);
+                            gerador.Processar(dados, fullPath);
 
                             Console.WriteLine("Arquivo gerado em: " + fullPath);
                         }

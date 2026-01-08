@@ -50,6 +50,7 @@
     <Compile Include="Entidades\Documento.cs" />
     <Compile Include="Entidades\Empresa.cs" />
     <Compile Include="Entidades\Item.cs" />
+    <Compile Include="GeradorTxt\GeradorLayout2.cs" />
     <Compile Include="Interface\IGeradorArquivo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
