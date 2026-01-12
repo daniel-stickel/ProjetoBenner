@@ -29,5 +29,25 @@ namespace AvaliacaoDotnet.GeradorTxt
                 RegistraLinha("03");
             }
         }
+
+        public override void Processar(List<Empresa> empresas, string caminhoSaida)
+        {
+            // SE DER TEMPO ADICIONAR O TRYCAT
+
+            foreach (var emp in empresas)
+            {
+                foreach (var doc in emp.Documentos)
+                {
+                    if (!doc.ValorEhValido())
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red; // um pouquinho de FRU FRU pra chamar a atenção 
+                        Console.WriteLine($"[ERRO DE VALIDAÇÃO] O Documento {doc.Numero} tem valor total diferente da soma dos itens.");
+                        Console.ResetColor();
+                                       
+                    }
+                }
+            }
+        }
+
     }
 }

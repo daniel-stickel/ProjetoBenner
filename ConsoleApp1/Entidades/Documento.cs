@@ -13,7 +13,7 @@ namespace AvaliacaoDotnet.Entidades
         public decimal Valor { get; set; }
         public List<ItemDocumento> Itens { get; set; } = new List<ItemDocumento>();
 
-        public bool ValorEhValido()
+        public bool ValorEhValido()  //talvez esse método não esteja no lugar mais apropriado 
         {
 
             if (Itens == null) return false;

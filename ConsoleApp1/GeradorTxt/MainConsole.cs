@@ -1,4 +1,5 @@
 using AvaliacaoDotnet;
+using AvaliacaoDotnet.GeradorTxt;
 using System;
 using System.IO;
 
@@ -59,11 +60,35 @@ namespace GeradorTxt
                         }
                         break;
 
-                    case "3":
-                        Console.Write("Gerar arquivo");
+                    case "3": //Mudança
+
+                        Console.WriteLine("Gerar arquivo\n" +
+                                      "Digite 1 para o layout padrão \n" +
+                                      "Digite 2 para o novo layout com a informação Categoria");
+                        var versao = Console.ReadLine();
+
+                        if (versao != "1" && versao != "2")
+                        {
+                            Console.WriteLine("Opção inválida");
+                            break;
+                        }
+
+                        GeradorArquivoBase gerador;
+                        string sufixo;
+
+                        if (versao == "1")
+                        {
+                            gerador = new GeradorArquivoBase();
+                            sufixo = "v01";
+                        }
+                        else
+                        {
+                            gerador = new GeradorLayout2();
+                            sufixo = "v02";
+                        }
+
                         try
                         {
-                            var gerador = new GeradorArquivoBase();
 
                             var dados = JsonRepository.LoadEmpresas(_jsonPath);
 
@@ -72,8 +97,9 @@ namespace GeradorTxt
                             var fullPath = Path.Combine(_outputDir, fileName);
 
                             gerador.Processar(dados, fullPath);
-
+                            Console.ForegroundColor = ConsoleColor.Green;
                             Console.WriteLine("Arquivo gerado em: " + fullPath);
+                            Console.ResetColor();
                         }
                         catch (Exception ex)
                         {
