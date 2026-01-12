@@ -2,6 +2,7 @@ using AvaliacaoDotnet;
 using AvaliacaoDotnet.GeradorTxt;
 using System;
 using System.IO;
+using AvaliacaoDotnet.Utils;
 
 namespace GeradorTxt
 {
@@ -19,7 +20,7 @@ namespace GeradorTxt
             while (true)
             {
                 Console.WriteLine();
-                Console.WriteLine("Menu");
+                ConsoleUtils.ExibirTitulo("Menu");
                 Console.WriteLine("1. Configurar arquivo .json (base de dados)");
                 Console.WriteLine("2. Configurar diretório de output");
                 Console.WriteLine("3. Gerar arquivo");
@@ -37,11 +38,11 @@ namespace GeradorTxt
                         if (!string.IsNullOrWhiteSpace(jp) && File.Exists(jp))
                         {
                             _jsonPath = jp;
-                            Console.WriteLine("OK! JSON configurado: " + _jsonPath);
+                            ConsoleUtils.ExibirSucesso("OK! JSON configurado: " + _jsonPath);
                         }
                         else
                         {
-                            Console.WriteLine("Caminho inválido ou arquivo não encontrado.");
+                            ConsoleUtils.ExibirErro("Caminho inválido ou arquivo não encontrado.");
                         }
                         break;
 
@@ -56,30 +57,30 @@ namespace GeradorTxt
                                 Directory.CreateDirectory(od);
 
                                 _outputDir = od;
-                                Console.WriteLine("OK! Diretório de saída configurado: " + _outputDir);
+                                ConsoleUtils.ExibirSucesso("OK! Diretório de saída configurado: " + _outputDir);
                             }
                             catch (Exception ex)
                             {
-                                Console.WriteLine("Caminho inválido, Digite o caminho correto\n" +
+                                ConsoleUtils.ExibirErro("Caminho inválido, Digite o caminho correto\n" +
                                                   " Erro: " + ex.Message);
                             }
                         }
                         else
                         {
-                            Console.WriteLine("Diretório inválido ou vazio.");
+                            ConsoleUtils.ExibirErro("Diretório inválido ou vazio.");
                         }
                         break;
 
                     case "3": //Mudança
 
-                        Console.WriteLine("Gerar arquivo\n" +
+                        ConsoleUtils.ExibirTitulo("Gerar arquivo\n" +
                                       "Digite 1 para o layout padrão \n" +
                                       "Digite 2 para o novo layout com a informação Categoria");
                         var versao = Console.ReadLine();
 
                         if (versao != "1" && versao != "2")
                         {
-                            Console.WriteLine("Opção inválida");
+                            ConsoleUtils.ExibirErro("Opção inválida");
                             break;
                         }
 
@@ -107,13 +108,11 @@ namespace GeradorTxt
                             var fullPath = Path.Combine(_outputDir, fileName);
 
                             gerador.Processar(dados, fullPath);
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine("Arquivo gerado em: " + fullPath);
-                            Console.ResetColor();
+                            ConsoleUtils.ExibirSucesso("Arquivo gerado em: " + fullPath);
                         }
                         catch (Exception ex)
                         {
-                            Console.WriteLine("Erro ao gerar arquivo: " + ex.Message);
+                            ConsoleUtils.ExibirErro("Erro ao gerar arquivo: " + ex.Message);
                         }
                         break;
 
@@ -121,7 +120,7 @@ namespace GeradorTxt
                         return;
 
                     default:
-                        Console.WriteLine("Opção inválida.");
+                        ConsoleUtils.ExibirErro("Opção inválida.");
                         break;
                 }
             }

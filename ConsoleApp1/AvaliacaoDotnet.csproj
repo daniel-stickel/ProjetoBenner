@@ -57,6 +57,7 @@
     <Compile Include="GeradorTxt\GeradorArquivoBase.cs" />
     <Compile Include="GeradorTxt\JsonRepository.cs" />
     <Compile Include="GeradorTxt\MainConsole.cs" />
+    <Compile Include="Utils\ConsoleUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
