@@ -32,7 +32,7 @@ namespace AvaliacaoDotnet.GeradorTxt
 
         public override void Processar(List<Empresa> empresas, string caminhoSaida)
         {
-            // SE DER TEMPO ADICIONAR O TRYCAT
+            // Eu ia colocar um trycat aqui, mas como implementei no MainConsole acho que nunca cairia aqui
 
             foreach (var emp in empresas)
             {
@@ -47,6 +47,8 @@ namespace AvaliacaoDotnet.GeradorTxt
                     }
                 }
             }
+
+            base.Processar(empresas, caminhoSaida);
         }
 
     }

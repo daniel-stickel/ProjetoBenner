@@ -50,13 +50,23 @@ namespace GeradorTxt
                         var od = Console.ReadLine();
                         if (!string.IsNullOrWhiteSpace(od))
                         {
-                            _outputDir = od;
-                            Directory.CreateDirectory(_outputDir);
-                            Console.WriteLine("OK! Diretório de saída configurado: " + _outputDir);
+                            try
+                            {
+
+                                Directory.CreateDirectory(od);
+
+                                _outputDir = od;
+                                Console.WriteLine("OK! Diretório de saída configurado: " + _outputDir);
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine("Caminho inválido, Digite o caminho correto\n" +
+                                                  " Erro: " + ex.Message);
+                            }
                         }
                         else
                         {
-                            Console.WriteLine("Diretório inválido.");
+                            Console.WriteLine("Diretório inválido ou vazio.");
                         }
                         break;
 
